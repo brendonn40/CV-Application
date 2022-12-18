@@ -10,7 +10,7 @@ const Formacao = () => {
       gridGap={"5px"}
     >
       <Input
-        name='curso'
+        name='course'
         type='text'
         placeholder='Nome do curso'
         isRequired={true}
@@ -19,7 +19,7 @@ const Formacao = () => {
         width={"95%"}
       />
       <Input
-        name='escola'
+        name='institution'
         placeholder='Instituição'
         type='text'
         isRequired={true}
@@ -29,7 +29,7 @@ const Formacao = () => {
       />
 
       <Input
-        name='comeco'
+        name='initialYear'
         placeholder='Ano de inicio'
         type='number'
         min='1970'
@@ -40,7 +40,7 @@ const Formacao = () => {
         width={"95%"}
       />
       <Input
-        name='conclusao'
+        name='conclusionYear'
         placeholder='Ano de conclusão(deixe vazio se ainda estiver cursando).'
         type='text'
         backgroundColor={"white"}
