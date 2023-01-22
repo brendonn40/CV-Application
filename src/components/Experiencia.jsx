@@ -1,52 +1,77 @@
 import React from "react";
-import { Input,Flex } from "@chakra-ui/react";
+import { Input, Flex, Button, Heading } from "@chakra-ui/react";
+import { useFieldArray } from "react-hook-form";
+import { AiFillPlusSquare } from "react-icons/ai";
+const Experiencia = ({ control, register }) => {
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "experiences",
+  });
 
-const Experiencia = () => {
   return (
-    <Flex
-      direction={"column"}
-      justifyContent={"center"}
-      alignItems={"center"}
-      gridGap={"5px"}
-    >
-      <Input
-        name='company'
-        type='text'
-        placeholder='Nome da empresa'
-        isRequired={true}
-        backgroundColor={"white"}
-        padding='10px'
-        width={"95%"}
-      />
-      <Input
-        name='position'
-        placeholder='Cargo'
-        type='text'
-        isRequired={true}
-        backgroundColor={"white"}
-        padding='10px'
-        width={"95%"}
-      />
+    <>
+      <Heading size="md" mt="20px" textAlign={"center"}>
+        Experiencia
+        <Button>
+          <AiFillPlusSquare   onClick={() => append({})}/>
+        </Button>
+      </Heading>
+      <Flex
+        direction={"column"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        gridGap={"5px"}
+      >
+        {fields.map((field, index) => (
+          <>
+            <Input
+              name="company"
+              type="text"
+              placeholder="Nome da empresa"
+              isRequired={true}
+              backgroundColor={"white"}
+              padding="10px"
+              width={"95%"}
+              key={field.id}
+              {...register(`experiences.${index}.company`)}
+            />
+            <Input
+              name="position"
+              placeholder="Cargo"
+              type="text"
+              isRequired={true}
+              backgroundColor={"white"}
+              padding="10px"
+              width={"95%"}
+              key={field.id}
+              {...register(`experiences.${index}.position`)}
+            />
 
-      <Input
-        name='beginDate'
-        placeholder='Data de inicio'
-        type='date'
-        isRequired={true}
-        backgroundColor={"white"}
-        padding='10px'
-        width={"95%"}
-      />
-      <Input
-        name='endDate'
-        placeholder='Data de saida'
-        type='date'
-        backgroundColor={"white"}
-        padding='10px'
-        width={"95%"}
-      />
-      
-    </Flex>
+            <Input
+              name="beginDate"
+              placeholder="Data de inicio"
+              type="date"
+              isRequired={true}
+              backgroundColor={"white"}
+              padding="10px"
+              width={"95%"}
+              key={field.id}
+              {...register(`experiences.${index}.beginDate`)}
+            />
+            <Input
+              name="endDate"
+              placeholder="Data de saida"
+              type="date"
+              backgroundColor={"white"}
+              padding="10px"
+              width={"95%"}
+              key={field.id}
+              {...register(`experiences.${index}.endDate`)}
+            />
+          </>
+        ))}
+      </Flex>
+    </>
   );
 };
 export default Experiencia;
