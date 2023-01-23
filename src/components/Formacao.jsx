@@ -9,14 +9,10 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import {
-  useFieldArray,
-  Control,
-  UseFormRegister,
-  UseFormSetValue,
-  UseFormWatch,
-  UseFormGetValues,
+  useFieldArray
 } from "react-hook-form";
 import { AiFillPlusSquare } from "react-icons/ai";
+import { Divider } from '@chakra-ui/react'
 
 const Formacao = ({ control, register }) => {
   const { fields, append, remove } = useFieldArray({
@@ -103,6 +99,7 @@ const Formacao = ({ control, register }) => {
               <option value="Curso técnico">Curso técnico</option>
               <option value="Outros">Outros</option>
             </Select>
+            <Divider orientation="horizontal" color={`black`}/>
           </>
         ))}
       </Flex>

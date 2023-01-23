@@ -2,6 +2,8 @@ import React from "react";
 import { Input, Flex, Button, Heading } from "@chakra-ui/react";
 import { useFieldArray } from "react-hook-form";
 import { AiFillPlusSquare } from "react-icons/ai";
+import { Divider } from '@chakra-ui/react'
+
 const Experiencia = ({ control, register }) => {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -68,6 +70,7 @@ const Experiencia = ({ control, register }) => {
               key={field.id}
               {...register(`experiences.${index}.endDate`)}
             />
+            <Divider/>
           </>
         ))}
       </Flex>
