@@ -15,26 +15,25 @@ import {
 } from "@chakra-ui/react";
 import { BsTelephone } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
-const Preview = ({ data }) => {
-  const onSubmit = (data) => console.log(data);
+const Preview = React.forwardRef((props,ref) => {
   return (
-    <Container>
-      <Flex justifyContent={`space-between`}>
-        <Avatar size={`2xl`} name={data.name} src={data?.photo} />
+    <Container ref={ref}>
+      <Flex justifyContent={`space-between`} mt={`80px`}>
+        <Avatar size={`2xl`} name={props?.props?.name} src={props?.props?.photo} />
         <Flex direction={`column`} gridGap={`12px`}>
           <div>
-            <strong>{data?.name}</strong>
-            <Text>{data?.profession}</Text>
+            <strong>{props?.props?.name}</strong>
+            <Text>{props?.props?.profession}</Text>
           </div>
           <Box border={`solid 1px black`} padding={`8px`}>
             <strong>CONTATO</strong>
             <Flex gridGap={`5px`} alignItems={`center`}>
               <BsTelephone />
-              <Text>{data?.tel}</Text>
+              <Text>{props?.props?.tel}</Text>
             </Flex>
             <Flex gridGap={`5px`} alignItems={`center`}>
               {" "}
-              <AiOutlineMail /> <Text>{data?.email}</Text>
+              <AiOutlineMail /> <Text>{props?.props?.email}</Text>
             </Flex>
           </Box>
         </Flex>
@@ -42,23 +41,37 @@ const Preview = ({ data }) => {
       <Box mt={`20px`}>
         <strong>Formação</strong>
         <ul style={{ listStyle: `none` }}>
-          {data?.formations.map((formation, index) => (
+          {props?.props?.formations?.map((formation, index) => (
             <li key={index}>
-              <strong>
-                {formation.initialYear} - {formation.conclusionYear === '' ? 'Cursando': formation.conclusionYear}
-              </strong>{" "}
-              <span>
-                {formation.courseType}-{formation.course}
-              </span>
+              <div>Curso: {formation.course}</div>{" "}
+              <div>
+                Periodo: {formation.initialYear} -{" "}
+                {formation.conclusionYear === ""
+                  ? "Cursando"
+                  : formation.conclusionYear}
+              </div>
+              <div>Tipo:{formation.courseType}</div>
+              <div>Instituição:{formation.institution}</div>
+            </li>
+          ))}
+        </ul>
+        <strong>Experiências</strong>
+        <ul style={{ listStyle: `none` }}>
+          {props?.props?.experiences?.map((experience, index) => (
+            <li key={index}>
+              <div>Empresa: {experience.company}</div>{" "}
+              <div>
+                Periodo: {experience.beginDate} -{" "}
+                {experience.endDate === "" ? "Atualmente" : experience.endDate}
+              </div>
+              <span>Cargo: {experience.position}</span>
             </li>
           ))}
         </ul>
       </Box>
     </Container>
   );
-}
+});
 
-const FileInputWrapper = styled.input`
-  display: none;
-`;
+
 export default Preview;

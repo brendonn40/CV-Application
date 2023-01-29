@@ -74,7 +74,7 @@ const Formacao = ({ control, register }) => {
             />
             <Input
               name="conclusionYear"
-              placeholder="Ano de conclusão(deixe vazio se ainda estiver cursando)."
+              placeholder="Ano de conclusão."
               type="text"
               backgroundColor={"white"}
               padding="10px"

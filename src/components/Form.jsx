@@ -18,15 +18,25 @@ import {
   FormHelperText,
 } from "@chakra-ui/react";
 import Formacao from "./Formacao";
-import { AiFillPlusSquare } from "react-icons/ai";
 import Experiencia from "./Experiencia";
-import { useState } from "react";
+import { useState,useRef  } from "react";
 import ModalPreview from "./Modal";
+import { useReactToPrint } from 'react-to-print';
+import Preview from "./Preview";
 const Form = () => {
-  const { control, register, handleSubmit } = useForm();
+  const { control, register} = useForm();
   const [isOpenModal, setIsOpenModal] = useState(false);
+  // const [data, setData] = useState();
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+  
 
-  const onSubmit = (data) => console.log(data);
+  const handleClick =()=>{
+  // setData(control._formValues);
+  handlePrint()
+  }
   return (
     <VStack mx="auto" w="60%" justifyContent="center">
         {isOpenModal ? (
@@ -40,7 +50,7 @@ const Form = () => {
         <Heading size="md" mt="20px" textAlign={"center"}>
           Informações pessoais
         </Heading>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form >
           <Flex
             direction={"column"}
             justifyContent={"center"}
@@ -102,9 +112,6 @@ const Form = () => {
           <Experiencia control={control} register={register} />
           <Center>
             <Flex gridGap={`12px`}>
-              <Button type="submit" variant="solid" p={2} colorScheme="teal">
-                Criar
-              </Button>
               <Button
                 variant="solid"
                 p={2}
@@ -113,7 +120,7 @@ const Form = () => {
               >
                 Visualizar
               </Button>
-              <Button variant="solid" p={2} colorScheme="green">
+              <Button variant="solid" p={2} colorScheme="green" onClick={handleClick}>
                 Imprimir
               </Button>
             </Flex>
