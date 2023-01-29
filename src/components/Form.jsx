@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
+import React from "react";
 import { useForm } from "react-hook-form";
 import {
   Box,
@@ -9,34 +8,26 @@ import {
   VStack,
   Center,
   Flex,
-  Divider,
 } from "@chakra-ui/react";
 import {
-  FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
+
 } from "@chakra-ui/react";
 import Formacao from "./Formacao";
 import Experiencia from "./Experiencia";
 import { useState,useRef  } from "react";
 import ModalPreview from "./Modal";
 import { useReactToPrint } from 'react-to-print';
-import Preview from "./Preview";
 const Form = () => {
   const { control, register} = useForm();
   const [isOpenModal, setIsOpenModal] = useState(false);
-  // const [data, setData] = useState();
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
   
 
-  const handleClick =()=>{
-  // setData(control._formValues);
-  handlePrint()
-  }
+
   return (
     <VStack mx="auto" w="60%" justifyContent="center">
         {isOpenModal ? (
@@ -120,7 +111,7 @@ const Form = () => {
               >
                 Visualizar
               </Button>
-              <Button variant="solid" p={2} colorScheme="green" onClick={handleClick}>
+              <Button variant="solid" p={2} colorScheme="green" onClick={handlePrint}>
                 Imprimir
               </Button>
             </Flex>
@@ -131,7 +122,5 @@ const Form = () => {
   );
 };
 
-const FileInputWrapper = styled.input`
-  display: none;
-`;
+
 export default Form;

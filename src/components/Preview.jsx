@@ -1,25 +1,16 @@
 import React from "react";
-import styled from "styled-components";
-import { useForm } from "react-hook-form";
-import {
-  Box,
-  Button,
-  Heading,
-  Input,
-  VStack,
-  Center,
-  Flex,
-  Container,
-  Text,
-  Avatar,
-} from "@chakra-ui/react";
+import { Box, Flex, Container, Text, Avatar } from "@chakra-ui/react";
 import { BsTelephone } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
-const Preview = React.forwardRef((props,ref) => {
+const Preview = React.forwardRef((props, ref) => {
   return (
     <Container ref={ref}>
       <Flex justifyContent={`space-between`} mt={`80px`}>
-        <Avatar size={`2xl`} name={props?.props?.name} src={props?.props?.photo} />
+        <Avatar
+          size={`2xl`}
+          name={props?.props?.name}
+          src={props?.props?.photo}
+        />
         <Flex direction={`column`} gridGap={`12px`}>
           <div>
             <strong>{props?.props?.name}</strong>
@@ -72,6 +63,5 @@ const Preview = React.forwardRef((props,ref) => {
     </Container>
   );
 });
-
 
 export default Preview;
